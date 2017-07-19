@@ -38,6 +38,10 @@ import java.util.Collections;
 public class StatusBarSettings extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {
 
+        private static final String KEY_SHOW_FOURG = "show_fourg_icon";
+
+        private SwitchPreference mShowFourg;
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -45,6 +49,11 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
         addPreferencesFromResource(R.xml.bootleg_dumpster_frag_status_bar);
 
         PreferenceScreen prefSet = getPreferenceScreen();
+
+        mShowFourg = (SwitchPreference) findPreference(KEY_SHOW_FOURG);
+
+        if (!TelephonyUtils.isVoiceCapable(getActivity())) {
+            prefScreen.removePreference(mShowFourg);
 
     }
 
@@ -55,6 +64,11 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
             default:
                 return false;
         }
+
+    public static void reset(Context mContext) {
+        ContentResolver resolver = mContext.getContentResolver();
+        Settings.System.putIntForUser(resolver,
+                Settings.System.SHOW_FOURG_ICON, 0, UserHandle.USER_CURRENT);
     }
 
     @Override
@@ -62,4 +76,19 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
         return MetricsProto.MetricsEvent.BOOTLEG;
     }
 
+    /**
+     * For search
+     */
+    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider(R.xml.bootleg_dumpster_frag_status_bar) {
+                @Override
+                public List<String> getNonIndexableKeys(Context context) {
+                    List<String> keys = super.getNonIndexableKeys(context);
+                    if (!TelephonyUtils.isVoiceCapable(context)) {
+                        keys.add(KEY_SHOW_FOURG);
+                    }
+
+                    return keys;
+                }
+            };
 }
