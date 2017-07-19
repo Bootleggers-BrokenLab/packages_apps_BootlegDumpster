@@ -38,6 +38,10 @@ import java.util.Collections;
 public class StatusBarSettings extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {
 
+        private static final String KEY_SHOW_FOURG = "show_fourg_icon";
+
+        private SwitchPreference mShowFourg;
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -45,6 +49,8 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
         addPreferencesFromResource(R.xml.bootleg_dumpster_frag_status_bar);
 
         PreferenceScreen prefSet = getPreferenceScreen();
+
+        mShowFourg = (SwitchPreference) findPreference(KEY_SHOW_FOURG);
 
     }
 
@@ -55,11 +61,15 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
             default:
                 return false;
         }
+
+    public static void reset(Context mContext) {
+        ContentResolver resolver = mContext.getContentResolver();
+        Settings.System.putIntForUser(resolver,
+                Settings.System.SHOW_FOURG_ICON, 0, UserHandle.USER_CURRENT);
     }
 
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.BOOTLEG;
     }
-
 }
