@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2016 Nitrogen Project
+<!--
+     Copyright (C) 2017 crDroid Android Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,16 +14,14 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
-    android:title="@string/statusbar_title">
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="24.0dp"
+        android:height="24.0dp"
+        android:viewportWidth="24.0"
+        android:viewportHeight="24.0"
+        android:tint="?android:attr/colorControlNormal">
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M22,16.5V10.5H17.5V13.5H19V16.5H16V7.5H22V4.5H16A3,3 0 0,0 13,7.5V16.5A3,3 0 0,0 16,19.5H19A3,3 0 0,0 22,16.5M8,19.5H11V4.5H8V10.5H5V4.5H2V13.5H8V19.5Z" />
+</vector>
 
-        <com.bootleggers.support.preferences.SystemSettingSwitchPreference
-            android:key="show_fourg_icon"
-            android:icon="@drawable/ic_fourg"
-            android:title="@string/show_fourg_icon_title"
-            android:summary="@string/show_fourg_icon_summary"
-            android:defaultValue="false"/>
-
-</PreferenceScreen>
