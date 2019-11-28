@@ -25,8 +25,14 @@ import android.view.View;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.bootleggers.support.preferences.SystemSettingEditTextPreference;
+
 public class QuickSettings extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {
+
+        private static final String FOOTER_TEXT_STRING = "footer_text_string";
+
+        private SystemSettingEditTextPreference mFooterString;
 
 
     @Override
@@ -38,13 +44,35 @@ public class QuickSettings extends SettingsPreferenceFragment implements
         PreferenceScreen prefScreen = getPreferenceScreen();
         ContentResolver resolver = getActivity().getContentResolver();
 
+        mFooterString = (SystemSettingEditTextPreference) findPreference(FOOTER_TEXT_STRING);
+        mFooterString.setOnPreferenceChangeListener(this);
+        String footerString = Settings.System.getString(getContentResolver(),
+                FOOTER_TEXT_STRING);
+        if (footerString != null && !footerString.isEmpty())
+            mFooterString.setText(footerString);
+        else {
+            mFooterString.setText("#BringTheShishuBack");
+            Settings.System.putString(getActivity().getContentResolver(),
+                    Settings.System.FOOTER_TEXT_STRING, "#BringTheShishuBack");
+        }
+
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         ContentResolver resolver = getActivity().getContentResolver();
-        switch (preference.getKey()) {
-            default:
+        if (preference == mFooterString) {
+            String value = (String) newValue;
+            if (value != "" && !value.isEmpty())
+                Settings.System.putString(getActivity().getContentResolver(),
+                        Settings.System.FOOTER_TEXT_STRING, value);
+            else {
+                mFooterString.setText("#BringTheShishuBack");
+                Settings.System.putString(getActivity().getContentResolver(),
+                        Settings.System.FOOTER_TEXT_STRING, "#BringTheShishuBack");
+            }
+            return true;
+        }
                 return false;
         }
     }
