@@ -184,4 +184,8 @@
     <string name="screen_off_animation_crt">CRT</string>
     <string name="screen_off_animation_scale">Scale</string>
 
+    <!-- QS footer text -->
+    <string name="footer_text_show_title">Show QS footer text</string>
+    <string name="footer_text_string_title">Customize footer text</string>
+    <string name="footer_text_string_summary">Set to empty for default #BringTheShishuBack</string>
 </resources>
