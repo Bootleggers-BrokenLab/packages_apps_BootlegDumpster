@@ -31,4 +31,11 @@
             android:summary="@string/qs_footer_text_string_summary"
             android:dependency="qs_footer_text_show"
             android:defaultValue="#BringTheShishuBack" />
+
+        <com.bootleggers.support.preferences.SystemSettingSwitchPreference
+            android:key="footer_text_show_switch"
+            android:title="@string/qs_footer_text_show_title"
+            android:summary="@string/qs_footer_text_string_summary"
+            android:defaultValue="false"/>
+
 </PreferenceScreen>
