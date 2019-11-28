@@ -35,4 +35,10 @@
 
     </PreferenceCategory>
 
+        <com.bootleggers.support.preferences.SystemSettingSwitchPreference
+            android:key="footer_text_show_switch"
+            android:title="@string/footer_text_show_title"
+            android:summary="@string/footer_text_string_summary"
+            android:defaultValue="false"/>
+
 </PreferenceScreen>
