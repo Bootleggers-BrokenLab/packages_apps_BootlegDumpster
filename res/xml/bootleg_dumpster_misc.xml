@@ -93,4 +93,13 @@
 
     </PreferenceCategory>
 
+    <com.bootleggers.dumpster.preferences.SystemSettingMasterSwitchPreference
+
+        android:key="gaming_mode_enabled"
+        android:icon="@drawable/ic_gaming"
+        android:fragment="com.bootleggers.dumpster.fragments.GamingMode"
+        android:title="@string/gaming_mode_title"
+        android:summary="@string/gaming_mode_summary"
+        android:defaultValue="false" />
+
 </PreferenceScreen>
