@@ -19,6 +19,34 @@
     android:title="@string/statusbar_title">
 
     <PreferenceCategory
+        android:key="statusbar_clock_cat"
+        android:title="@string/date_and_time">
+
+     <com.bootleggers.support.preferences.SystemSettingSwitchPreference
+        android:key="statusbar_clock"
+        android:title="@string/status_bar_show_clock_title"
+        android:summaryOn="@string/status_bar_clock_summary_on"
+        android:summaryOff="@string/status_bar_clock_summary_off"
+        android:defaultValue="true" />
+
+        <!-- Clock seconds hide/show -->
+    <com.bootleggers.support.preferences.SystemSettingSwitchPreference
+        android:key="statusbar_clock_seconds"
+        android:title="@string/status_bar_clock_seconds_title"
+        android:entries="@array/entries_status_bar_clock_seconds"
+        android:entryValues="@array/values_status_bar_clock_seconds"
+        android:dependency="statusbar_clock"
+        android:defaultValue="false" />
+
+    <Preference
+        android:key="clock_adv_settings"
+        android:title="@string/status_bar_clock_adv_title"
+        android:summary="@string/status_bar_clock_adv_summary"
+        android:dependency="statusbar_clock"
+        android:fragment="com.bootleggers.dumpster.external.ClockDateSettings" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:key="statusbar_misc_cat"
         android:title="@string/category_misc_title">
 
@@ -27,5 +55,6 @@
         android:title="@string/double_tap_to_sleep_title"
         android:summary="@string/double_tap_to_sleep_statusbar_summary"
         android:defaultValue="true" />
+    </PreferenceCategory>
 
 </PreferenceScreen>
